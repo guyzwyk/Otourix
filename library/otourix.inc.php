@@ -1319,6 +1319,10 @@
 				return false;
 		}
 
+		/*function otourix_teachings_not_assigned($new_classId, $new_courseId, $new_teachersLogin){
+			$query = "SELECT $this->fld_teachingsId FROM $this->tbl_teachings WHERE $this->tbl";
+		}*/
+
 		//Get a row of Teachings
 		function arr_get_teachings($new_teachingsId){
 			global $thewu32_cLink;
@@ -3320,9 +3324,27 @@
             else return false;
         }
 
-		function chk_otourix_teachings_already($OldTeacher, $newTeacher, $newClass,$newCourse){
-			//$oldTeacher = $this->
+		function chk_otourix_teachings_already($newTeacher, $newClass, $newCourse){
+			global $thewu32_cLink;
+    	    $query = "SELECT * FROM $this->tbl_teachings WHERE $this->fld_classesId = '$newClass' AND $this->fld_courseId = '$newCourse' AND $this->fld_memberLogin != '$newTeacher'";
+    		$result = mysqli_query($thewu32_cLink, $query) or die ("Erreur d'extraction des donnees pour verification de l'inexistence d'une matiere enseignee.".mysqli_error($thewu32_cLink));
+    		$row = mysqli_fetch_row($result);
+    		if($total = $row[0])  //Mysql a genere au moins 1 resultat
+    			return true;
+    		else
+    			return false;
 		}
+
+        function chk_entry_trice_diff($tbl, $fld1, $fld2, $fld3, $entry1, $entry2, $entry3){
+    	    global $thewu32_cLink;
+    	    $query = "SELECT * FROM $tbl WHERE $fld1 = '$entry1' AND $fld2 = '$entry2' AND $fld3 != '$entry3'";
+    		$result = mysqli_query($thewu32_cLink, $query) or die ("Erreur d'extraction des donnees pour test sur 3 valeurs ".mysqli_error($thewu32_cLink));
+    		$row = mysqli_fetch_row($result);
+    		if($total = $row[0])  //Mysql a genere au moins 1 resultat
+    			return true;
+    		else
+    			return false;
+    	}
 
         function chk_otourix_course($new_courseId, $new_courseLib){
             if(($this->chk_entry($this->tbl_course, $this->fld_courseId, $new_courseId)) || ($this->chk_entry($this->tbl_course, $this->fld_courseName, $new_courseLib)))
