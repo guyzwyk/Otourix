@@ -872,7 +872,7 @@
                         	        <div class="form-group" style="padding: 0 15px;">
                         		        <label for="sel_teacherTeachings" class="control-label" style="font-weight: bold;"><?php print $mod_lang_output['FORM_LABEL_TEACHER-NAME']?></label>
                         			    <div>
-                        				    <select class="form-control" name="sel_teacherTeachings" id="sel_teacherTeachings"><?php print $myMember->cmb_load_members(5, $myMember->get_member_by_login($_POST['sel_teacherTeachings']), $_POST['sel_teacherTeachings']); ?></select>
+                        				    <select class="form-control" name="sel_teacherTeachings" id="sel_teacherTeachings"><?php print $myMember->cmb_load_members(5, $myMember->get_member_by_login($_POST['sel_teacherTeachings']), $_POST['sel_teacherTeachings'], 25); ?></select>
                         				</div>
                         			</div>
                         		    <div class="form-group" style="padding: 0 15px;">
