@@ -1,0 +1,51 @@
+{
+    "page":
+    [
+        {
+            "page-icon"             :   "fa-users",
+            "page-nb-items"         :   "100",
+            "page-banner"           :   "ban-otourix.jpg"
+        }
+    ],
+    "admin":
+    [
+        {
+            "admin-icon"            :   "fa-users",
+            "admin-nb-items"        :   "100",
+            "admin-banner"          :   "ban-otourix.jpg"
+        }
+    ],
+    "database":
+    [
+        {
+            "table-master"          :   "otourix_usr",
+            "table-master-cat"      :   "otourix_usr_level",
+            "table-master-subcat"   :   "",
+            "table-detail"          :   "otourix_usr",
+            "field-order-master"    :   "member_name",
+            "field-id-master"       :   "member_id"
+        },
+        {
+            "table-comment"         :   "",
+            "table-author"          :   "",
+            "table-author-group"    :   ""
+        }
+    ],
+    "images":
+    [
+        {
+            "thumb-size-width"      :   "",
+            "thumb-size-height"     :   "",
+            "head-size-width"       :   "",
+            "head-size-height"      :   "",
+            "inner-size-width"      :   "",
+            "inner-size-height"     :   ""
+        }
+    ],
+    "forms":
+    [
+        {
+            "code-update-enabling"  :   "0"
+        }
+    ]
+}
