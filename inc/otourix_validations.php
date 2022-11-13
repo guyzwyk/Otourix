@@ -319,7 +319,7 @@
         }
     }
 
-    /******************************** Modifier une matière ***********************************************/
+    /******************************** Modifier une matiï¿½re ***********************************************/
    if(isset($_POST['btn_courseUpdate'])){
        $oldCode             =   $_POST['hd_oldCourseId'];
        $newCode             =   $_POST['txt_courseIdUpd'];
@@ -350,7 +350,7 @@
    }
 
     /******************************** Modifier une matiere enseignee ***********************************************/
-   if(isset($_POST['btn_teachingsUpdate'])){
+   /* if(isset($_POST['btn_teachingsUpdate'])){
        print "Toto teachings";
        $selected_teachingsId    =   $_POST['hd_teachingsId'];
        $new_classId             =   $_POST['sel_classUpd'];
@@ -364,7 +364,26 @@
             $teachings_display_cfrm_msg    =   'Mati&egrave;re enseign&eacute;e mise &agrave; jour avec succ&egrave;s.';
             $system->set_log('OTOURIX TEACHINGS UPDATE ERROR :: Mati&egrave;re enseign&eacute;e '.$selected_teachingsId.'('.$new_className.') Erreur de mise &agrave; jour avec des mati&egrave;res enseign&eacute;es '.$selSession);
        }
-   }
+   } */
+
+   if(isset($_POST['btn_teachingsUpdate'])){
+		//print "Toto teachings";
+		$selected_teachingsId    =   $_POST['hd_teachingsId'];
+		$new_classId             =   $_POST['sel_classUpd'];
+		$new_courseId            =   $_POST['sel_courseUpd'];
+		$new_teacherLogin        =   $_POST['hd_teacherLogin'];
+		if($myMember->chk_otourix_teachings_already($new_teacherLogin, $new_classId, $new_courseId)){
+            $teachings_display_err_msg    = "D&eacute;sol&eacute;!<br />La mati&egrave;re enseign&eacute;e sollicit&eacute; est d&eacute;j&agrave; attribu&eacute;e!";
+		}
+		elseif($myMember->update_otourix_teachings($selected_teachingsId, $new_classId, $new_courseId, $new_teacherLogin)){
+			$teachings_display_cfrm_msg    =   'Mati&egrave;re enseign&eacute;e mise &agrave; jour avec succ&egrave;s.';
+			$system->set_log('OTOURIX TEACHINGS UPDATED :: Mati&egrave;re enseign&eacute;e '.$selected_teachingsId.'('.$new_className.') mise &agrave; jour avec succ&egrave; '.$selSession);
+		}
+		else{
+			$teachings_display_err_msg    =   'D&eacute;sol&eacute;!<br />Impossible de mettre &agrave; jour la mati&egrave;re enseign&eacute;e sollicit&eacute;e.';
+			$system->set_log('OTOURIX TEACHINGS UPDATE ERROR :: Mati&egrave;re enseign&eacute;e '.$selected_teachingsId.'('.$new_className.') Erreur de mise &agrave; jour avec des mati&egrave;res enseign&eacute;es '.$selSession);
+		}
+	}
 
 
 
